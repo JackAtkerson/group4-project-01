@@ -25,18 +25,19 @@
     />
   <link rel="stylesheet" href="./style.css" />
 
-  <title></title>
+  <title>Pitcher Perfect</title>
 </head>
 
-<body>
+<body class="flex-column min-100-vh">
 
 <header>
-    <h1 class="application-title"> Application Name </h1>
-    <p> Search for football games based on your location! </p>
+    <h1 class="application-title"> Pitcher Perfect </h1>
+    <p> Brewary Search </p>
 </header>
 
-<main class=" justify-space-between" >
-    <div class=" col-6 col-md-4">
+<main class=" justify-space-between container" >
+  <div class="row" >
+    <div class=" col-12 col-md-4">
         <div class="section">
           <h3 class="section-header text-uppercase">Search By Zipcode</h3>
           <form id="user-form" class="section-body">
@@ -48,24 +49,19 @@
 
     </div>
 
-    <div class="col-6 col-md-8">
+    <div class="col-12 col-md-8">
         <div>
-          <h2 class="subtitle">Showing games: <span id="showgames"></span></h2>
-          <div id="games-container" class="list-games"></div>
+          <h2 class="subtitle">Showing breweries: <span id="showbreweries"></span></h2>
+          <div id="breweries-container" class="list-breweries"></div>
         </div>
   
       </div>
   
-
+   </div>
 
 </main>
 
-
-
-
-
-
-
+<script src="./script.js" ></script>
 
 
 </body>
