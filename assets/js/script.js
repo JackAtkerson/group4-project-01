@@ -1,7 +1,7 @@
 var userFormEl = document.querySelector("#user-form");
-var zipcodeinputEl = document.querySelector("#Zipcode");
-var breweraiescontainer = document.querySelector("#breweries-container");
-var showbreweries = document.querySelector("showbreweries");
+var zipcodeInputEl = document.querySelector("#zipcode");
+var breweriesContainer = document.querySelector("#breweries-container");
+var showBreweries = document.querySelector("showbreweries");
 
 
 var formSubmitHandler = function(event) {
@@ -9,25 +9,22 @@ var formSubmitHandler = function(event) {
     event.preventDefault();
   
     // get value from input element
-    var zipcode = zipcodeinputEl.value.trim();
+    var zipcode = zipcodeInputEl.value.trim();
   
     if (zipcode) {
-        getbrewarieslist(zipcode);
+        getBreweriesList(zipcode);
   
       // clear old content
-      breweraiescontainer.textContent = "";
-      zipcodeinputEl.value = "";
+      breweriesContainer.textContent = "";
+      zipcodeInputEl.value = "";
     } else {
       alert("Please enter a valid Zipcode");
     }
 };
   
-var getbrewarieslist = function(breweries) {
+var getBreweriesList = function(breweries) {
     
-  var apiUrl = "https://api.openbrewerydb.org/breweries?by_postal=&per_page=3"+ breweries +"/postal" ; 
-  
-  
-    
+  var apiUrl = "https://api.openbrewerydb.org/breweries?by_postal=" + breweries; 
     fetch(apiUrl)
       .then(function(response) {
         
@@ -35,60 +32,52 @@ var getbrewarieslist = function(breweries) {
           console.log(response);
           response.json().then(function(data) {
             console.log(data);
-            displaybrewaries(data, breweries);
+            displayBreweries(data, breweries);
           });
         } else {
           alert('Error: Breweries Not Found');
         }
       })
       .catch(function(error) {
-        alert("Unable to connect to open brewary!");
+        alert("Unable to connect to open brewery!");
       });
+
+      console.log(apiUrl);
 };
 
-var displaybrewaries = function(breweries,) {
+var displayBreweries = function(breweries) {
     
     if (breweries.length === 0) {
-      repoContainerEl.textContent = "No breweries found.";
+      breweriesContainer.textContent = "No breweries found.";
       return;
     }
-  
-    
-  
     
     for (var i = 0; i < breweries.length; i++) {
       
-      var breweriesName = breweries[i].name;
+        var breweryName = breweries[i].name;
+        var brewerySite = breweries[i].website_url;
+        var breweryAddress = breweries[i].street;
   
       
-      var breweriesEl = document.createElement("a");
-      breweriesEl.classList = "list-item flex-row justify-space-between align-center";
-      breweriesEl.setAttribute("href", "https://api.openbrewerydb.org/breweries" + breweriesName);
-  
+        var breweryEl = document.createElement("a");
+        breweryEl.classList = "list-item flex-row justify-space-between align-center";
+        breweryEl.setAttribute("href", brewerySite);
+        breweryEl.setAttribute("target", "_blank");
       
-      var titleEl = document.createElement("span");
-      titleEl.textContent = breweriesName;
-  
-      // append to container
-      breweriesEl.appendChild(titleEl);
-  
-      // create a status element
-      var statusEl = document.createElement("span");
-      statusEl.classList = "flex-row align-center";
-  
-      
-      if (breweries[i].open_issues_count > 0) {
-        statusEl.innerHTML =
-          "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + " issue(s)";
-      } else {
-        statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-      }
-  
-      // append to container
-      breweriesEl.appendChild(statusEl);
-  
-      // append container to the dom
-      breweraiescontainer.appendChild(breweriesEl);
+        var titleEl = document.createElement("span");
+        titleEl.textContent = breweryName;
+
+        var breweryInfoEl = document.createElement("div");
+        breweryInfoEl.setAttribute("class", "brewery-info");
+
+        var addressEl = document.createElement("p");
+        addressEl.textContent = "Address: " + breweryAddress;
+
+        breweryEl.appendChild(titleEl);
+        breweryInfoEl.appendChild(breweryEl);
+        breweryInfoEl.appendChild(addressEl);
+        breweriesContainer.appendChild(breweryInfoEl);
     }
   };
+
 userFormEl.addEventListener("submit", formSubmitHandler);
