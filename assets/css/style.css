@@ -2,8 +2,8 @@
   --primary: #fae96f;
   --secondary: #fdf5eb;
   --tertiary: #342404;
-  --light-dark: #6f6866;
-  --dark: #38302e;
+  --light-dark: #DF8D03;
+  --dark: #170c01;
   --border-radius: .3rem;
   }
   
@@ -77,8 +77,20 @@ main {
     margin: 0 0 0 5px;
   }
   
+  .form-input {
+    width: 100%;
+    padding: 3%;
+    margin: 5px 0;
+    font-size: 1.2rem;
+    border: 2px solid var(--light-dark);
+    border-radius: var(--border-radius);
+
+  }
+  
+  
 
 
+  
   .btn {
     font-size: 1.3rem;
     text-decoration:none;
