@@ -9,10 +9,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -23,7 +19,8 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma-rtl.min.css">
+  <link rel="stylesheet" href="assets/css/style.css" />
 
   <title>Pitcher Perfect</title>
 </head>
@@ -31,27 +28,27 @@
 <body class="flex-column min-100-vh">
 
 <header>
-    <h1 class="application-title"> Pitcher Perfect </h1>
+    <h1 class="application-title column is-full"> Pitcher Perfect </h1>
     <p> Brewery Search </p>
 </header>
 
 <main class=" justify-space-between container" >
-  <div class="row" >
-    <div class=" col-12 col-md-4">
+  <div class="columns" >
+    <div class="column is-one-third">
         <div class="section">
           <h3 class="section-header text-uppercase">Search By Zipcode</h3>
           <form id="user-form" class="section-body">
             <label class="form-label" for="username">Zipcode</label>
-            <input name="Zipcode" id="zipcode" type="text" autofocus="true" class="form-input" />
-            <button type="submit" class="btn">submit</button>
+            <input name="Zipcode" id="Zipcode" type="text" autofocus="true" class="input is-rounded" />
+            <button input type="submit" class="btn button is-rounded ">submit</button>
           </form>
         </div>
 
     </div>
 
-    <div class="col-12 col-md-8">
+    <div class="column is-two-thirds">
         <div>
-          <h2 class="subtitle">Showing Breweries: <span id="showbreweries"></span></h2>
+          <h2 class="subtitle">Showing breweries: <span id="showbreweries"></span></h2>
           <div id="breweries-container" class="list-breweries"></div>
         </div>
   
@@ -61,7 +58,7 @@
 
 </main>
 
-<script src="./script.js" ></script>
+<script src= "assets/js/script.js" ></script>
 
 
 </body>

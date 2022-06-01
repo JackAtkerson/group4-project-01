@@ -1,10 +1,10 @@
 :root {
-    --primary: #ccdad1;
-    --secondary: #9caea9;
-    --tertiary: #788585;
-    --light-dark: #6f6866;
-    --dark: #38302e;
-    --border-radius: .3rem;
+  --primary: #fae96f;
+  --secondary: #fdf5eb;
+  --tertiary: #342404;
+  --light-dark: #DF8D03;
+  --dark: #170c01;
+  --border-radius: .3rem;
   }
   
   * {
@@ -42,7 +42,7 @@ main {
   .application-title{
     text-align: center;  
     font-size: 3rem;
-    background-color: var(--primary);
+    background-color: var(--secondary);
     color: var(--dark);
     padding: 0 10px;
     display: inline-block;
@@ -84,7 +84,13 @@ main {
     font-size: 1.2rem;
     border: 2px solid var(--light-dark);
     border-radius: var(--border-radius);
+
   }
+  
+  
+
+
+  
   .btn {
     font-size: 1.3rem;
     text-decoration:none;
