@@ -58,7 +58,6 @@ var displayBreweries = function(breweries) {
         var brewerySite = breweries[i].website_url;
         var breweryAddress = breweries[i].street;
   
-      
         var breweryEl = document.createElement("a");
         breweryEl.classList = "list-item flex-row justify-space-between align-center";
         breweryEl.setAttribute("href", brewerySite);
