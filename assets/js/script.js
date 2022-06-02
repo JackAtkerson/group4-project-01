@@ -57,24 +57,20 @@ var displayBreweries = function(breweries) {
         var breweryName = breweries[i].name;
         var brewerySite = breweries[i].website_url;
         var breweryAddress = breweries[i].street;
-  
-      
-        var breweryEl = document.createElement("a");
-        breweryEl.classList = "list-item flex-row justify-space-between align-center";
-        breweryEl.setAttribute("href", brewerySite);
-        breweryEl.setAttribute("target", "_blank");
       
         var titleEl = document.createElement("span");
         titleEl.textContent = breweryName;
 
-        var breweryInfoEl = document.createElement("div");
-        breweryInfoEl.setAttribute("class", "brewery-info");
+        var breweryInfoEl = document.createElement("a");
+        breweryInfoEl.setAttribute("href", brewerySite);
+        breweryInfoEl.setAttribute("target", "_blank");
+        breweryInfoEl.textContent = "";
+        breweryInfoEl.setAttribute("class", "brewery-info btn button is-rounded is-responsive");
 
         var addressEl = document.createElement("p");
         addressEl.textContent = "Address: " + breweryAddress;
 
-        breweryEl.appendChild(titleEl);
-        breweryInfoEl.appendChild(breweryEl);
+        breweryInfoEl.appendChild(titleEl);
         breweryInfoEl.appendChild(addressEl);
         breweriesContainer.appendChild(breweryInfoEl);
     }
