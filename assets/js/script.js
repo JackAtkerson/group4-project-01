@@ -57,7 +57,8 @@ var displayBreweries = function(breweries) {
         var breweryName = breweries[i].name;
         var brewerySite = breweries[i].website_url;
         var breweryAddress = breweries[i].street;
-      
+        var breweryLongitude = breweries[i].longitude
+        var breweryLatitiude = breweries[i].latitiude
         var titleEl = document.createElement("span");
         titleEl.textContent = breweryName;
 
@@ -77,3 +78,38 @@ var displayBreweries = function(breweries) {
   };
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+//* Start of Open Layers Java coding *//
+
+var map = new ol.Map({
+  target: 'map',
+  layers: [
+    new ol.layer.Tile({
+      source: new ol.source.OSM()
+    })
+  ],
+  view: new ol.View({
+    center: ol.proj.fromLonLat([0, 0]),
+    zoom: 4
+  })
+});
+
+var centerLongitudeLatitude = ol.proj.fromLonLat([126.6222289, 37.47157834]);
+var layer = new ol.layer.Vector({
+  source: new ol.source.Vector({
+    projection: 'EPSG:4326',
+    features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, 50))]
+  }),
+  style: [
+    new ol.style.Style({
+      stroke: new ol.style.Stroke({
+        color: 'blue',
+        width: 1
+      }),
+      fill: new ol.style.Fill({
+        color: 'rgba(0, 0, 255, 0.1)'
+      })
+    })
+  ]
+});
+map.addLayer(layer);
