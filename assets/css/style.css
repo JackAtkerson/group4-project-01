@@ -5,6 +5,7 @@
   --light-dark: #DF8D03;
   --dark: #170c01;
   --border-radius: .3rem;
+  
   }
   
   * {
@@ -12,7 +13,7 @@
   }
   
   body {
-    background-color: var(--primary);
+    background: var(--primary);
     margin: 0;
     padding: 0;
     font-family: "IBM Plex Sans", sans-serif;
@@ -23,7 +24,7 @@
   
 main {
     margin: 20px auto;
-    width: 94%;
+    width: auto;
   }
   header{
       text-align: center;
@@ -39,10 +40,10 @@ main {
   }
   */
 
-  .application-title{
+  .application-title {
     text-align: center;  
     font-size: 3rem;
-    background-color: var(--secondary);
+    background: linear-gradient(#fdf5eb 50%, #fae96f);
     color: var(--dark);
     padding: 0 10px;
     display: inline-block;
@@ -87,25 +88,23 @@ main {
 
   }
   
-  
-
-
-  
   .btn {
     font-size: 1.3rem;
     text-decoration:none;
     padding: 6px 5px;
     width: 100%;
     display: block;
-    margin: 5px 0;
-    border-radius: var(--border-radius);
     color: var(--primary);
     border: none;
     outline: none;
     background-color: var(--light-dark);
     box-shadow: 3px 3px var(--dark);
     transform: translate(-1px, -1px);
+    height: fit-content;
+
   }
+
+
   
    .btn:hover {
     color: var(--primary);
@@ -133,3 +132,19 @@ main {
     text-decoration: none;
     font-size: 1.2rem;
   }  
+
+  .brewery-info {
+
+    border: var(--tertiary);
+    background: var(--tertiary);
+    color: var(--secondary);
+    margin: 6px;
+  }
+
+  #input textarea {
+
+    background: var(--secondary);
+  }
+
+ 
+  

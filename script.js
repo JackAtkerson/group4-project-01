@@ -1,6 +1,7 @@
 var userFormEl = document.querySelector("#user-form");
 var zipcodeInputEl = document.querySelector("#zipcode");
 var breweriesContainer = document.querySelector("#breweries-container");
+var mapContainerEl = document.querySelector("#map-container");
 var showBreweries = document.querySelector("showbreweries");
 
 
@@ -54,10 +55,12 @@ var displayBreweries = function(breweries) {
     
     for (var i = 0; i < breweries.length; i++) {
       
+        var breweryLongitude = breweries[i].longitude;
+        var breweryLatitude = breweries[i].latitude;
         var breweryName = breweries[i].name;
         var brewerySite = breweries[i].website_url;
         var breweryAddress = breweries[i].street;
-  
+
         var breweryEl = document.createElement("a");
         breweryEl.classList = "list-item flex-row justify-space-between align-center";
         breweryEl.setAttribute("href", brewerySite);
@@ -71,6 +74,18 @@ var displayBreweries = function(breweries) {
 
         var addressEl = document.createElement("p");
         addressEl.textContent = "Address: " + breweryAddress;
+
+        var map = new ol.Map({
+            target: "map",
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([breweryLongitude, breweryLatitude]),
+            })
+        });
 
         breweryEl.appendChild(titleEl);
         breweryInfoEl.appendChild(breweryEl);

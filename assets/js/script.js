@@ -3,7 +3,6 @@ var zipcodeInputEl = document.querySelector("#zipcode");
 var breweriesContainer = document.querySelector("#breweries-container");
 var showBreweries = document.querySelector("showbreweries");
 
-
 var formSubmitHandler = function(event) {
     // prevent page from refreshing
     event.preventDefault();
@@ -33,6 +32,7 @@ var getBreweriesList = function(breweries) {
           response.json().then(function(data) {
             console.log(data);
             displayBreweries(data, breweries);
+            displayMap(data, breweries);
           });
         } else {
           alert('Error: Breweries Not Found');
@@ -66,16 +66,19 @@ var displayBreweries = function(breweries) {
         var titleEl = document.createElement("span");
         titleEl.textContent = breweryName;
 
-        var breweryInfoEl = document.createElement("div");
-        breweryInfoEl.setAttribute("class", "brewery-info");
+        var breweryInfoEl = document.createElement("a");
+        breweryInfoEl.setAttribute("href", brewerySite);
+        breweryInfoEl.setAttribute("target", "_blank");
+        breweryInfoEl.textContent = "";
+        breweryInfoEl.setAttribute("class", "brewery-info btn button is-rounded is-responsive");
 
         var addressEl = document.createElement("p");
         addressEl.textContent = "Address: " + breweryAddress;
 
-        breweryEl.appendChild(titleEl);
-        breweryInfoEl.appendChild(breweryEl);
+        breweryInfoEl.appendChild(titleEl);
         breweryInfoEl.appendChild(addressEl);
         breweriesContainer.appendChild(breweryInfoEl);
+
     }
   };
 
