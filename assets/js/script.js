@@ -13,6 +13,7 @@ var formSubmitHandler = function(event) {
     if (zipcode) {
         getBreweriesList(zipcode)
   
+        getBreweriesList(zipcode);
       // clear old content
       breweriesContainer.textContent = "";
       zipcodeInputEl.value = "";
@@ -20,7 +21,7 @@ var formSubmitHandler = function(event) {
       alert("Please enter a valid Zipcode");
     }
 };
-  
+var Coordinates = [];
 var getBreweriesList = function(breweries) {
     
   var apiUrl = "https://api.openbrewerydb.org/breweries?by_postal=" + breweries; 
@@ -31,6 +32,12 @@ var getBreweriesList = function(breweries) {
           console.log(response);
           response.json().then(function(data) {
             console.log(data);
+            for (var i = 0; i < data.length; i++){
+              var longitude = data[i].longitude;
+              var latitude = data[i].latitude; 
+              var Passthrough = [longitude,latitude]; 
+              Coordinates.push(Passthrough);
+            }
             displayBreweries(data, breweries);
             displayMap(data, breweries);
           });
@@ -43,6 +50,7 @@ var getBreweriesList = function(breweries) {
       });
 
       console.log(apiUrl);
+      AddCircles();
 };
 
 var displayBreweries = function(breweries) {
@@ -132,3 +140,36 @@ var displayMap = function(breweries){
 userFormEl.addEventListener("submit", formSubmitHandler);
 
 //* Start of Open Layers Java coding *//
+
+
+// var Coordinates = [[-90.22073676,38.6348785],[-90.20969425,38.63298865]]
+function AddCircles (){
+  console.log(Coordinates.length)
+for (let i = 0;i < Coordinates.length; i++){
+  var Long = Coordinates[i][0]
+  var Lat = Coordinates[i][1]
+  var Coords = [] 
+  Coords.push(Long)
+  Coords.push(Lat) 
+  var centerLongitudeLatitude = ol.proj.fromLonLat(Coords);
+  var layer = new ol.layer.Vector({
+
+    source: new ol.source.Vector({
+      projection: 'EPSG:4326',
+      features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, 5000))]
+    }),
+    style: [
+      new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: 'blue',
+          width: 1
+        }),
+        fill: new ol.style.Fill({
+          color: 'rgba(0, 0, 255, 0.1)'
+        })
+      })
+    ]
+  });
+  map.addLayer(layer);
+}
+}
