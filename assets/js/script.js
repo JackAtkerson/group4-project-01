@@ -51,12 +51,32 @@ var displayBreweries = function(breweries) {
       breweriesContainer.textContent = "No breweries found.";
       return;
     }
-    
+
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(0,0)
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([breweryLongitude, breweryLatitiude]),
+        zoom: 16
+      })
+    });
+
     for (var i = 0; i < breweries.length; i++) {
       
         var breweryName = breweries[i].name;
         var brewerySite = breweries[i].website_url;
         var breweryAddress = breweries[i].street;
+        var breweryLongitude = breweries[i].longitude;
+        var breweryLatitiude = breweries[i].latitude;
+
+        console.log(breweryName);
+
+        console.log(breweryLongitude);
+        console.log(breweryLatitiude);
   
         var breweryEl = document.createElement("a");
         breweryEl.classList = "list-item flex-row justify-space-between align-center";
@@ -78,47 +98,35 @@ var displayBreweries = function(breweries) {
         breweryInfoEl.appendChild(titleEl);
         breweryInfoEl.appendChild(addressEl);
         breweriesContainer.appendChild(breweryInfoEl);
-
+    
+        var centerLongitudeLatitude = ol.proj.fromLonLat([breweryLongitude, breweryLatitiude]);
+        var layer = new ol.layer.Vector({
+          source: new ol.source.Vector({
+            projection: 'EPSG:4326',
+            features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, 50))]
+          }),
+          style: [
+            new ol.style.Style({
+              stroke: new ol.style.Stroke({
+                color: 'blue',
+                width: 1
+              }),
+              fill: new ol.style.Fill({
+                color: 'rgba(0, 0, 255, 0.1)'
+              })
+            })
+          ]
+        });
+    
+        map.addLayer(layer);
     }
+
+    
+
   };
 
 var displayMap = function(breweries){
-  var breweryLongitude = breweries[0].longitude;
-  var breweryLatitiude = breweries[0].latitiude;
-
-    var map = new ol.Map({
-      target: 'map',
-      layers: [
-        new ol.layer.Tile({
-          source: new ol.source.OSM(breweryLongitude, breweryLatitiude)
-        })
-      ],
-      view: new ol.View({
-        center: ol.proj.fromLonLat([]),
-        zoom: 16
-      })
-    });
-
-    var centerLongitudeLatitude = ol.proj.fromLonLat([-86.794546, 36.165123]);
-    var layer = new ol.layer.Vector({
-      source: new ol.source.Vector({
-        projection: 'EPSG:4326',
-        features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, 50))]
-      }),
-      style: [
-        new ol.style.Style({
-          stroke: new ol.style.Stroke({
-            color: 'blue',
-            width: 1
-          }),
-          fill: new ol.style.Fill({
-            color: 'rgba(0, 0, 255, 0.1)'
-          })
-        })
-      ]
-    });
-
-    map.addLayer(layer);
+    console.log("map");
   };
 
 userFormEl.addEventListener("submit", formSubmitHandler);
