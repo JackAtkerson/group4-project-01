@@ -47,6 +47,7 @@ main {
     color: var(--dark);
     padding: 0 10px;
     display: inline-block;
+    width: 100%;
    
   }
 
@@ -92,7 +93,7 @@ main {
     font-size: 1.3rem;
     text-decoration:none;
     padding: 6px 5px;
-    width: 100%;
+    width: 95%;
     display: block;
     color: var(--primary);
     border: none;
@@ -104,7 +105,10 @@ main {
 
   }
 
+  .btn:visited {
 
+    color: var(--primary);
+  }
   
    .btn:hover {
     color: var(--primary);
@@ -139,6 +143,12 @@ main {
     background: var(--tertiary);
     color: var(--secondary);
     margin: 6px;
+    
+  }
+
+  .brewery-text {
+
+    font-size: 1.2rem;
   }
 
   #input textarea {
