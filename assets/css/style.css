@@ -146,5 +146,10 @@ main {
     background: var(--secondary);
   }
 
- 
-  
+
+  /* Start of OpenLayers styles */
+
+  .map {
+    height: 400px;
+    width: 100%;
+  }

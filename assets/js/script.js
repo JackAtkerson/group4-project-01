@@ -11,7 +11,7 @@ var formSubmitHandler = function(event) {
     var zipcode = zipcodeInputEl.value.trim();
   
     if (zipcode) {
-        getBreweriesList(zipcode);
+        getBreweriesList(zipcode)
   
       // clear old content
       breweriesContainer.textContent = "";
@@ -62,7 +62,7 @@ var displayBreweries = function(breweries) {
         breweryEl.classList = "list-item flex-row justify-space-between align-center";
         breweryEl.setAttribute("href", brewerySite);
         breweryEl.setAttribute("target", "_blank");
-      
+    
         var titleEl = document.createElement("span");
         titleEl.textContent = breweryName;
 
@@ -82,4 +82,45 @@ var displayBreweries = function(breweries) {
     }
   };
 
+var displayMap = function(breweries){
+  var breweryLongitude = breweries[0].longitude;
+  var breweryLatitiude = breweries[0].latitiude;
+
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM(breweryLongitude, breweryLatitiude)
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([]),
+        zoom: 16
+      })
+    });
+
+    var centerLongitudeLatitude = ol.proj.fromLonLat([-86.794546, 36.165123]);
+    var layer = new ol.layer.Vector({
+      source: new ol.source.Vector({
+        projection: 'EPSG:4326',
+        features: [new ol.Feature(new ol.geom.Circle(centerLongitudeLatitude, 50))]
+      }),
+      style: [
+        new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            color: 'blue',
+            width: 1
+          }),
+          fill: new ol.style.Fill({
+            color: 'rgba(0, 0, 255, 0.1)'
+          })
+        })
+      ]
+    });
+
+    map.addLayer(layer);
+  };
+
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+//* Start of Open Layers Java coding *//
