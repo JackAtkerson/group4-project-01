@@ -67,15 +67,17 @@ var displayBreweries = function(breweries) {
         var breweryLatitiude = breweries[i].latitiude
         var titleEl = document.createElement("span");
         titleEl.textContent = breweryName;
+        titleEl.classList = "brewery-text column is-half"
 
         var breweryInfoEl = document.createElement("a");
         breweryInfoEl.setAttribute("href", brewerySite);
         breweryInfoEl.setAttribute("target", "_blank");
         breweryInfoEl.textContent = "";
-        breweryInfoEl.setAttribute("class", "brewery-info btn button is-rounded is-responsive");
+        breweryInfoEl.setAttribute("class", "brewery-info btn button is-rounded is-responsive columns");
 
         var addressEl = document.createElement("p");
         addressEl.textContent = "Address: " + breweryAddress;
+        addressEl.classList = "brewery-text column is-half"
 
         breweryInfoEl.appendChild(titleEl);
         breweryInfoEl.appendChild(addressEl);

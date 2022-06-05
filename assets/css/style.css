@@ -19,7 +19,7 @@
     font-family: "IBM Plex Sans", sans-serif;
     color: var(--dark);
     line-height: 1.5;
-    font-size: 16px;
+    font-size: 22px;
   }
   
 main {
@@ -27,26 +27,20 @@ main {
     width: auto;
   }
   header{
-      text-align: center;
+
+    text-align: center;
+    background: linear-gradient(#fdf5eb 50%, #fae96f);
+    margin-bottom: 12px;
   }
-  /* .row {
-    display: flex;
-    
-  }
-  
-  .column {
-    flex: 50%;
-    
-  }
-  */
+
 
   .application-title {
     text-align: center;  
     font-size: 3rem;
-    background: linear-gradient(#fdf5eb 50%, #fae96f);
     color: var(--dark);
     padding: 0 10px;
     display: inline-block;
+    width: 100%;
    
   }
 
@@ -92,7 +86,7 @@ main {
     font-size: 1.3rem;
     text-decoration:none;
     padding: 6px 5px;
-    width: 100%;
+    width: 95%;
     display: block;
     color: var(--primary);
     border: none;
@@ -104,7 +98,10 @@ main {
 
   }
 
+  .btn:visited {
 
+    color: var(--primary);
+  }
   
    .btn:hover {
     color: var(--primary);
@@ -139,7 +136,14 @@ main {
     background: var(--tertiary);
     color: var(--secondary);
     margin: 6px;
+    
   }
+
+  .brewery-text {
+
+    font-size: 1.2rem;
+  }
+
 
   #input textarea {
 
