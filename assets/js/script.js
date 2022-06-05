@@ -91,7 +91,6 @@ var displayBreweries = function(breweries) {
       breweryEl.setAttribute("href", brewerySite);
       breweryEl.setAttribute("target", "_blank");
     
-<<<<<<< HEAD
     var titleEl = document.createElement("span");
       titleEl.textContent = breweryName;
 
@@ -103,28 +102,6 @@ var displayBreweries = function(breweries) {
 
     var addressEl = document.createElement("p");
       addressEl.textContent = "Address: " + breweryAddress;
-=======
-    for (var i = 0; i < breweries.length; i++) {
-      
-        var breweryName = breweries[i].name;
-        var brewerySite = breweries[i].website_url;
-        var breweryAddress = breweries[i].street;
-        var breweryLongitude = breweries[i].longitude
-        var breweryLatitiude = breweries[i].latitiude
-        var titleEl = document.createElement("span");
-        titleEl.textContent = breweryName;
-        titleEl.classList = "brewery-text column is-half"
-
-        var breweryInfoEl = document.createElement("a");
-        breweryInfoEl.setAttribute("href", brewerySite);
-        breweryInfoEl.setAttribute("target", "_blank");
-        breweryInfoEl.textContent = "";
-        breweryInfoEl.setAttribute("class", "brewery-info btn button is-rounded is-responsive columns");
-
-        var addressEl = document.createElement("p");
-        addressEl.textContent = "Address: " + breweryAddress;
-        addressEl.classList = "brewery-text column is-half"
->>>>>>> 7cd27313b658afa0db37d8d5f8b447eb1618dc66
 
     breweryInfoEl.appendChild(titleEl);
     breweryInfoEl.appendChild(addressEl);
