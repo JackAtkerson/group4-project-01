@@ -70,7 +70,7 @@ var displayBreweries = function(breweries) {
         center: [breweries[0].longitude, breweries[0].latitude],
         zoom: 16,
         minzoom: 13,
-        maxzoom: 20            
+        maxzoom: 20      
     })
   });
   
